@@ -1,0 +1,196 @@
+@CHARSET "ISO-8859-1";
+
+pre{
+	font-family: 'Titillium Web', sans-serif;
+}
+#portfoliocontent{
+	position:relative;
+	width:100%;
+	height:auto;
+	min-height:700px;
+	margin-top:105px;
+	text-align:center;
+	z-index:10;
+}
+
+#portfoliocategory{
+	position:relative;
+	list-style-type: none;
+    margin: 2px auto;
+    line-height: 1.4;
+	display:inline-flex;
+	padding:initial;	
+}
+.portfoliosingbg{
+	position:relative;
+	width:100%;
+	height:350px;
+	background:grey;
+}
+.porttitfolioproject{
+	text-align:left; 
+	color:rgb(249, 162, 49);
+	text-transform:uppercase;
+	position:relative;
+	font-size:30px;
+	margin:0; 
+}
+.parcontent{
+	color:#898989;
+	font-weight:100;
+	font-size:16px;
+	font-family: 'Titillium Web', sans-serif;
+}
+
+.pptitlediv{
+	position:relative;
+	width:100%;
+	margin:20px 0px;
+}
+.porttitfoliocategory{
+	text-align:left; 
+	color:rgb(249, 162, 49);
+	position:relative;
+	font-size:18px;
+	margin:0;	
+}
+.portfoliodest{
+	text-align:left; 
+	color:#636363;
+	position:relative;
+	font-size:14px;
+	font-family: Calibri;
+}
+.projectmaintitle{
+	font-weight:bold;
+	line-height:30px; 
+	font-size:18px;
+	font-family: 'Titillium Web', sans-serif;
+	font-weight:700;
+	text-transform:uppercase;
+}
+.projectdesc{
+	line-height:30px; 
+	font-size:18px;
+	font-family: 'Titillium Web', sans-serif;
+}
+.categorybutton{
+	background:none;
+	color:#959595;
+	border:none;
+	padding:0px 20px;
+	font-size:17px;
+}
+.categorybutton:hover{
+	color:#f9a231;
+	cursor:pointer;	
+}
+#portfolioitemcontent{
+	position:relative;
+	padding:20px 0px;
+	margin-top:30px;	
+	margin:0 auto;
+}
+.portfolioitem{
+	position:relative;
+	width:140px;
+	height:140px;
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-color: rgb(231,232,233);
+}
+.portfolioitem:hover .portfoliobg{
+	cursor:pointer;
+	display:block;
+}
+.portfoliobg{
+	background:rgb(249, 162, 49);
+	position:relative;
+	height:100%;
+	width:100%;
+	display:none;
+	overflow: hidden;
+}
+.pfitempname{
+	position:relative;
+	color:white;
+	margin-left:5px;
+	margin-top:5px;
+	padding:0px !important;
+	font-weight:bold;
+	font-size:18px;
+	text-align:left;
+}
+.pfitemdesc{
+	position:relative;
+	margin-left:5px;
+	color:white;
+	padding:0px !important;
+	font-size:14px;
+	text-align:left;	
+}
+tbody{
+	vertical-align: top;
+}
+#pfpicture{
+	position:relative;
+	height:auto;	
+	color:#898989;
+	font-size:16px;
+	font-family: 'Titillium Web', sans-serif;
+}
+#doublepicture{
+	position:relative;
+	width:100%;
+	min-height:400px;
+}
+.doublepictureitem{
+	position:relative;
+	width:400px;
+	height:400px;
+	background-color:transparent;
+	display:inline-block;
+	margin-bottom:10px;
+	background-size:contain;
+	background-repeat:no-repeat;
+}
+.pfitemtitle{
+	color: #898989;
+	display:block;
+	font-size: 14px;
+	font-style:italic;
+	margin:10px 0px;
+}
+.singlepicture{
+	position:relative;
+	height:450px;
+	width:100%;
+	background-color:transparent;
+	background-size:contain;
+	background-repeat:no-repeat;
+}
+.pfbutton{
+	background-repeat:no-repeat;
+	height:100px;
+	width:100px;
+	background-color:transparent;
+	border:none;
+	background-size:contain;
+}
+.pfbutton:hover{
+	cursor:pointer;
+}
+.bpfbutton{
+	background-image:url(portfolio/prev.png);
+}
+.apfbutton{
+	background-image:url(portfolio/next.png);
+}
+.buttonnostyle{
+	background:transparent;
+	border:none;
+	color:#636363;
+}
+.buttonnostyle:hover{
+	cursor:pointer;
+}

@@ -1,0 +1,421 @@
+<body>
+
+<div id="portfoliocontent">
+	<h1 class="maintitle title" style="text-align:center;margin-top:150px;font-size:40px;">Our Portfolio</h1>
+
+	<ul id="portfoliocategory"> <!-- 
+		<li><button class="categorybutton" style="border-right:1px solid #959595">All categories</button></li>
+		<li><button class="categorybutton" style="border-right:1px solid #959595">Branding & Visual Identity</button></li>	
+		<li><button class="categorybutton" style="border-right:1px solid #959595">Print</button></li>	
+		<li><button class="categorybutton" style="border-right:1px solid #959595">Ilustration</button></li>	
+		<li><button class="categorybutton">Digital</button></li> -->	
+	</ul>
+
+	<table id="portfolioitemcontent" >
+	</table>
+</div>
+	<div id="footer">
+	
+		<div class="middlepagesection" style="padding:0px;">
+			<div id="socialmediacontact">
+			
+				
+					<a href="https://www.facebook.com/raihasa" class="sosmedlink" style="border-right:none;"><i class="fa fa-facebook"></i></a>
+					<a href="https://twitter.com/RaihasaVisual" class="sosmedlink" style="border-right:none;"><i class="fa fa-twitter"></i></a>
+					<a href="mailto:info@raihasa.com" class="sosmedlink" ><i class="fa fa-envelope"></i></a>
+				<p style="font-weight:bold;margin:5px 0px;line-height:30px;">Terms and conditions - Privacy Policy</p>
+				<p style="color: rgb(111,111,111);font-size:12px;font-weight:bold;margin:5px 0px;line-height:30px;">
+					2012 Copyright. Raihasa Media. All rights reserved.
+				</p>
+				
+				<p style="color:rgb(117,117,117);text-align:left;line-height:0px;font-weight:bold;">Contact:</p>
+				<p id="address" style="color: rgb(111,111,111);margin:0px;text-align:left;font-size:12px;" class=""textsmall"" >
+				<p id="infotelpemail" style="color: rgb(111,111,111);line-height:10px !important;margin:0px;text-align:left;font-size:12px;"  class=""textsmall"">	
+			</div>
+		</div>	
+
+		
+	<div class="ilustrationfooter">
+	</div>
+	</div>	
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	//document.getElementById("the_logo").style.display = "block";
+	initContactInfo();
+	initCategory();
+	var b = window.location.hash;
+	var test = b.split('?cat=')[0]; 
+	var catId = b.split('?cat=')[1];
+	if(catId == null || catId =='undefined')
+ 		initAllPictures();
+	else
+		viewProjectonCategory(catId);
+});
+function initAllPictures(){
+	var value = "";
+	var request = $.ajax({
+		  url: "php/portfolio_allpictures.php",
+		  type: "GET"
+		});
+	request.done(function(msg) {
+		fillInTable(msg );
+	});
+}
+function initAddress() {
+	var value = "";
+	var request = $.ajax({
+		  url: "php/home_address.php?param=1",
+		  type: "GET"
+		});
+	request.done(function(msg) {
+		alert(msg);
+		var element = document.getElementById('address');
+		element.innerHTML = msg;
+	});
+	
+}
+
+function initContactInfo(){
+	var value = "";
+	var request = $.ajax({
+		  url: "php/home_address.php?param=2",
+		  type: "GET"
+		});
+		request.done(function(msg) {
+		var element = document.getElementById('infotelpemail');
+		element.innerHTML = msg;
+	});
+}
+function fillInTable(result){
+	
+	var tableElement = document.getElementById('portfolioitemcontent');
+	var t = JSON.parse(result);
+	var obj;
+	var catlink;
+	var index = 1;
+	var content = "<tr>";
+	for(obj of t){
+		var proj_id = obj.proj_id;
+		var name = obj.name;
+		var short_desc = obj.short_desc;
+		var thumb_img_path = "";
+		if(obj.thumb_img_path.length > 0){
+			thumb_img_path = "php/"+obj.thumb_img_path;		
+			content = content + "<td><div class='portfolioitem' onclick='viewProjectPortfolio("+proj_id+")' style='background-image:url("+thumb_img_path+");'><div class='portfoliobg'><p class='pfitempname'>"+name+"</p><p class='pfitemdesc'>"+short_desc+"</p></div></div></td>";
+		}
+		else{
+			content = content + "<td><div class='portfolioitem' onclick='viewProjectPortfolio("+proj_id+")'><div class='portfoliobg'><p class='pfitempname'>"+name+"</p><p class='pfitemdesc'>"+short_desc+"</p></div></div></td>";
+		}
+		if(index<4){
+			index++;
+		}
+		else{
+			content = content +"</tr>";
+			content = content +"<tr>";
+			index = 1;
+//			content = content + "<td><div class='portfolioitem' onclick='viewProjectPortfolio("+proj_id+")' style='background-image:url("+thumb_img_path+");'><div class='portfoliobg'><p class='pfitempname'>"+name+"</p><p class='pfitemdesc'>"+short_desc+"</p></div></div></td>";
+		}
+		var projid = obj.proj_id;
+//		var img = obj.img;
+//		var id_img = obj.id_img;
+//		var cat_id = obj.cat_id;
+		
+		var description = obj.description;
+		
+	}
+	tableElement.innerHTML = "";
+	tableElement.innerHTML = content;
+}
+function initCategory(){
+	var catlist = document.getElementById('portfoliocategory');
+	getAllCategories(catlist);
+	
+}
+function viewProjectonCategory(catid){
+
+	var result = "";
+	$.get('php/portfolioquerycategory.php?catid='+catid ,function(data) {
+		fillInTable(data);
+	});
+
+}
+function getPictureByCategory(catid){
+	var xmlhttp;
+	var params = "catid="+catid;
+	if (window.XMLHttpRequest) {
+		xmlhttp=new XMLHttpRequest();
+	} else { 
+	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+	
+		}
+	}
+	xmlhttp.open("GET","php/portfolioquerycategory.php",true);
+	xmlhttp.send(params);
+	return xmlhttp.responseText;
+}
+function getAllPortfolioPictures(){
+	var xmlhttp;
+	if (window.XMLHttpRequest) {
+		xmlhttp=new XMLHttpRequest();
+	} else { 
+	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+	
+		}
+	}
+	xmlhttp.open("GET","php/portfolio_allpictures.php",true);
+	xmlhttp.send();
+	return xmlhttp.responseText;
+}
+function getAllCategories(catlist){
+
+	var value = "";
+	var request = $.ajax({
+		  url: "php/categoryqueryjson.php",
+		  type: "GET"
+		});
+	
+	request.done(function(msg) {
+		var t = JSON.parse(msg);
+
+		var c = "<li><button class='categorybutton' onclick='initAllPictures()' style='border-right:1px solid #959595'>All categories</button></li>";
+		for(var i = 0;i<t.length; i++){
+			var obj = t[i];
+			var cat = obj.cat;
+			var cat_id = obj.cat_id;
+			if(i == (t.length)-1){
+				c = c + "<li><button class='categorybutton' onclick='viewProjectonCategory("+cat_id+")' >"+cat+"</button></li>"			
+			}
+			else{
+				c = c + "<li><button class='categorybutton' onclick='viewProjectonCategory("+cat_id+")' style='border-right:1px solid #959595'>"+cat+"</button></li>"
+			}
+		}
+		catlist.innerHTML = "";
+		catlist.innerHTML = c;
+	});
+	
+	
+}
+function selectpf(id){
+	window.location.href = "../index.html";
+	var vid = id.id;
+	if(vid == "m1"){
+		window.location.href = "../index.html#home";
+	}else if(vid == "m2"){
+		window.location.href = "../index.html#aboutus";
+	}else if(vid == "m3"){
+		window.location.href = "../index.html#portfolio";
+	}else if(vid == "m4"){
+		window.location.href = "../index.html#contactus";
+	}else{
+		window.location.hash = "#home"
+		selectMenuButton('m1');
+	}
+}
+function viewProjectPortfolio(projid){
+	window.location.href = "php/portfolio.php?id="+projid;
+}
+function prevButton(pid){
+	var projectId = --pid;
+	var projectindex = getProjectIndex(projectId);
+	var newProjId = getProjectIdByIndex(projectindex);
+	window.location.href = "portfolio.php?id="+newProjId;
+	//viewProjectPortfolio(newProjId);
+}
+function nextButton(pid){
+	var projectId = ++pid;
+	var projectindex = getProjectIncIndex(projectId);
+	var newProjId = getProjectIdByIndex(projectindex);
+	window.location.href = "portfolio.php?id="+newProjId;
+}
+function getProjectIndex(pid){
+	var xmlhttp;
+	if (window.XMLHttpRequest) {
+		xmlhttp=new XMLHttpRequest();
+	} else { 
+	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+	
+		}
+	}
+	xmlhttp.open("GET","project_index_dec.php?pid="+pid,true);
+	xmlhttp.send();
+	return xmlhttp.responseText;
+}
+function getProjectIncIndex(pid){
+	var xmlhttp;
+	if (window.XMLHttpRequest) {
+		xmlhttp=new XMLHttpRequest();
+	} else { 
+	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+	
+		}
+	}
+	xmlhttp.open("GET","project_index_inc.php?pid="+pid,true);
+	xmlhttp.send();
+	return xmlhttp.responseText;
+}
+function getProjectIdByIndex(pindex){
+	var xmlhttp;
+	if (window.XMLHttpRequest) {
+		xmlhttp=new XMLHttpRequest();
+	} else { 
+	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+	
+		}
+	}
+	xmlhttp.open("GET","project_id_index.php?pindex="+pindex,true);
+	xmlhttp.send();
+	return xmlhttp.responseText;
+}
+
+</script>    
+<style>
+@CHARSET "ISO-8859-1";
+
+#portfoliocontent{
+	position:relative;
+	width:100%;
+	height:auto;
+	min-height:700px;
+	margin-top:105px;
+	text-align:center;
+	z-index:10;
+}
+
+#portfoliocategory{
+	position:relative;
+	list-style-type: none;
+    margin: 2px auto;
+    line-height: 1.4;
+	display:inline-flex;
+	padding:initial;	
+}
+
+.categorybutton{
+	background:none;
+	color:#959595;
+	border:none;
+	padding:0px 20px;
+	font-size:17px;
+}
+.categorybutton:hover{
+	color:#f9a231;
+	cursor:pointer;	
+}
+#portfolioitemcontent{
+	position:relative;
+	padding:20px 0px;
+	margin-top:30px;	
+	margin:0 auto;
+}
+.portfolioitem{
+	position:relative;
+	width:140px;
+	height:140px;
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-color: rgb(231,232,233);
+}
+.portfolioitem:hover .portfoliobg{
+	cursor:pointer;
+	display:block;
+}
+.portfoliobg{
+	background:rgb(249, 162, 49);
+	position:relative;
+	height:100%;
+	width:100%;
+	display:none;
+	overflow: hidden;
+}
+.pfitempname{
+	position:relative;
+	color:white;
+	margin-left:5px;
+	margin-top:5px;
+	padding:0px !important;
+	font-weight:bold;
+	font-size:18px;
+	text-align:left;
+}
+.pfitemdesc{
+	position:relative;
+	margin-left:5px;
+	color:white;
+	padding:0px !important;
+	font-size:14px;
+	text-align:left;	
+}
+tbody{
+	vertical-align: top;
+}
+#pfpicture{
+	position:relative;
+	height:auto;	
+}
+#doublepicture{
+	position:relative;
+	width:100%;
+	min-height:400px;
+}
+.doublepictureitem{
+	position:relative;
+	width:400px;
+	height:400px;
+	background-color:transparent;
+	display:inline-block;
+	margin-bottom:10px;
+	background-size:contain;
+	background-repeat:no-repeat;
+}
+.pfitemtitle{
+	color:#e7e8e9;
+	display:block;
+	font-size:25px;
+	font-weight:bold;
+	margin:0px 0px;
+}
+.singlepicture{
+	position:relative;
+	height:450px;
+	width:100%;
+	background-color:transparent;
+	margin-top:50px;
+	background-size:contain;
+	background-repeat:no-repeat;
+}
+.pfbutton{
+	background-repeat:no-repeat;
+	height:100px;
+	width:100px;
+	background-color:transparent;
+	border:none;
+	background-size:contain;
+}
+.pfbutton:hover{
+	cursor:pointer;
+}
+.bpfbutton{
+	background-image:url(portfolio/prev.png);
+}
+.apfbutton{
+	background-image:url(portfolio/next.png);
+}
+
+</style>
+</body>

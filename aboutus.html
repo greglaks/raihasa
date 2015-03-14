@@ -1,0 +1,199 @@
+
+
+<body>  
+<div id="aboutuscontent">
+
+<img alt="leftilustration" src="pageaboutus/butler.png" style="position:absolute;left:-10px;height:950px;top:0px">
+<img alt="imgdetail" src="pageaboutus/detailpic.png" style="position:absolute;right:0px;top:0px;height:400px;">
+	<div class="aboutusmiddlesection">
+<!-- 	<h1 class="maintitle title">How we think</h1>
+		<p class="paragraphgeneral" id="abusgeneral">		</div> -->
+		
+	<div class="aboutusmiddlesection" style="margin-top:initial">
+		<div style="position:relative;float:right;width:500px;">
+		<!--<h1 class="maintitle title">We believe in</h1>-->
+		
+		<div class="aboutusinfoitem">
+			<img alt="synergylogo" src="pageaboutus/synergy.png">
+			<p class="paragraphgeneral" id="abussynergy">
+			</p>
+		</div>
+		
+		<div class="aboutusinfoitem">
+			<img alt="criticallogo" src="pageaboutus/criticalthinking.png" style="margin-left:-165px; height:235px;">
+			<p class="paragraphgeneral" id="abuscritical">
+			</p>		
+		</div>
+		
+		<div class="aboutusinfoitem">
+			<img alt="integritylogo" src="pageaboutus/integrity.png" style="margin-left:-240px;">
+			<p class="paragraphgeneral" id="abusintegrity" style="margin-top:-60px;">
+			</p>				
+		</div>
+
+		<div class="aboutusinfoitem">
+			<img alt="serviceheartlogo" src="pageaboutus/serviceheart.png" style="margin-left:-230px">
+			<p class="paragraphgeneral" id="abusservice">
+
+			</p>				
+		</div>		
+			
+		</div>
+	</div>
+	
+</div>
+	
+		
+	<div id="footer">
+	
+		<div class="middlepagesection" style="padding:0px;">
+			<div id="socialmediacontact">
+			
+				
+					<a href="https://www.facebook.com/raihasa" class="sosmedlink" style="border-right:none;"><i class="fa fa-facebook"></i></a>
+					<a href="https://twitter.com/RaihasaVisual" class="sosmedlink" style="border-right:none;"><i class="fa fa-twitter"></i></a>
+					<a href="mailto:info@raihasa.com" class="sosmedlink" ><i class="fa fa-envelope"></i></a>
+				<p style="font-weight:bold;margin:5px 0px;line-height:30px;">Terms and conditions - Privacy Policy</p>
+				<p style="color: rgb(111,111,111);font-size:12px;font-weight:bold;margin:5px 0px;line-height:30px;">
+					2012 Copyright. Raihasa Media. All rights reserved.
+				</p>
+				
+				<p style="color:rgb(117,117,117);text-align:left;line-height:0px;font-weight:bold;">Contact:</p>
+				<p id="address" style="color: rgb(111,111,111);margin:0px;text-align:left;font-size:12px;" class=""textsmall"" >
+				<p id="infotelpemail" style="color: rgb(111,111,111);line-height:10px !important;margin:0px;text-align:left;font-size:12px;"  class=""textsmall"">	
+				
+				
+			</div>
+		</div>	
+
+		
+	<div class="ilustrationfooter">
+	</div>
+	
+	</div>
+<script type="text/javascript">
+$(function(){
+	//document.getElementById("the_logo").style.display = "block";
+ 	initAboutUsField();
+	initContactInfo();
+});
+function initAddress() {
+	var value = "";
+	var request = $.ajax({
+		  url: "php/home_address.php?param=1",
+		  type: "GET"
+		});
+	request.done(function(msg) {
+		var element = document.getElementById('address');
+		element.innerHTML = msg;
+	});
+	
+}
+
+function initContactInfo(){
+	var value = "";
+	var request = $.ajax({
+		  url: "php/home_address.php?param=2",
+		  type: "GET"
+		});
+		request.done(function(msg) {
+		var element = document.getElementById('infotelpemail');
+		element.innerHTML = msg;
+	});
+}
+function initAboutUsField(){
+	getAbGeneral();
+	getAbSynergy();
+	getAbCritical();
+	getAbIntegrity();
+	getAbService();
+
+}
+function getAbGeneral() {
+	var request = $.ajax({
+		  url: "php/ab_general.php",
+		  type: "GET"
+		});
+			request.done(function(msg) {
+			var element = document.getElementById('abusgeneral');
+			element.innerHTML = msg;
+	});
+}
+function getAbCritical() {
+	var request = $.ajax({
+		  url: "php/ab_critical.php",
+		  type: "GET"
+		});
+			request.done(function(msg) {
+			var element = document.getElementById('abuscritical');
+			element.innerHTML = msg;
+	});
+}
+function getAbIntegrity() {
+	var request = $.ajax({
+		  url: "php/ab_integrity.php",
+		  type: "GET"
+		});
+			request.done(function(msg) {
+			var element = document.getElementById('abusintegrity');
+			element.innerHTML = msg;
+	});
+}
+function getAbService() {
+	var request = $.ajax({
+		  url: "php/ab_service.php",
+		  type: "GET"
+		});
+			request.done(function(msg) {
+			var element = document.getElementById('abusservice');
+			element.innerHTML = msg;
+	});
+}
+function getAbSynergy() {
+	var request = $.ajax({
+		  url: "php/ab_synergy.php",
+		  type: "GET"
+		});
+			request.done(function(msg) {
+			var element = document.getElementById('abussynergy');
+			element.innerHTML = msg;
+	});
+}
+</script>
+<style>
+#aboutuscontent{
+	position:relative;
+	width:100%;
+	padding:1px 0px;	
+	min-height: 800px;
+	height: auto;
+	z-index:6;
+}
+.aboutusmiddlesection{
+	position:relative;
+	display: block;
+	margin: 0px auto;
+	width: 780px;
+	margin-top: 105px;
+	overflow:hidden;
+	z-index:20;
+	margin-top:220px;
+	margin-bottom:50px;
+}
+.aboutusinfoitem{
+	position:relative;
+	margin-bottom:45px;
+}
+.ilustrationright{
+	background-image:url('pageaboutus/ilustrationright.png');
+	background-size:contain;
+	background-repeat:no-repeat;
+	position:absolute;
+	right:0px;
+	height:560px;
+	width:125px;
+	bottom:120px;
+	z-index:20;
+}
+</style>    
+</body>

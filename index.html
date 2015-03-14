@@ -1,0 +1,105 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="shortcut icon" href="about:blank">
+<link href="general.css" rel="stylesheet" type="text/css" />
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,700' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-control" content="public">
+<title>Raihasa</title>
+</head>
+<body>
+<script src="js/myfunctions.js"></script>
+<script src="js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+
+
+<script src="php/admin.js"></script>
+<img alt="logo" src="pagehome/logo.png" width="200px" height="200px" style="position:absolute;left:0;right:600px;top:7px;margin:0 auto;z-index:20;">
+	<div id="headermenu" class="basebackgroundcolor">
+		<button class="mainmenubutton" id="m1" onclick="selectMenuButton('m1');">home</button>
+		<button class="mainmenubutton" id="m2" onclick="selectMenuButton('m2');">about us</button>
+		<button class="mainmenubutton" id="m3" onclick="selectMenuButton('m3');">portfolio</button>
+		<button class="mainmenubutton" id="m4" onclick="selectMenuButton('m4');">contact us</button>
+    </div>
+    
+<div id="content">    
+
+
+<script type="text/javascript">
+$(function(){
+//	selectMenuButton('m1');
+// #portfolio.php?cat=2
+	
+	var b = window.location.hash;
+	var test = b.split('?cat=')[0]; 
+	var catId = b.split('?cat=')[1];
+	if(test == "#home"){
+		selectMenuButton('m1');
+	}else if(test == "#aboutus"){
+		selectMenuButton('m2');
+	}else if(test == "#portfolio"){
+		
+		var element = document.getElementById('m3');
+		
+		var menu1 = document.getElementById('m1');
+		var menu2 = document.getElementById('m2');
+		var menu3 = document.getElementById('m3');
+		var menu4 = document.getElementById('m4');
+		
+		menu1.className = 'mainmenubutton';
+		menu2.className = 'mainmenubutton';
+		menu3.className = 'mainmenubutton';
+		menu4.className = 'mainmenubutton';
+		element.className = menu1.className + " mainmenubuttonselected";
+		
+		$("#content").load("portfolio.html");
+		window.location.hash = "#portfolio?cat="+catId;
+		
+	}else if(test == "#contactus"){
+		selectMenuButton('m4');
+	}else{
+		window.location.hash = "#home"
+		selectMenuButton('m1');
+	}
+});
+window.onhashchange = function() {
+	var b = window.location.hash;
+	var test = b.split('?cat=')[0]; 
+	var catId = b.split('?cat=')[1];
+	if(test == "#home"){
+		selectMenuButton('m1');
+	}else if(test == "#aboutus"){
+		selectMenuButton('m2');
+	}else if(test == "#portfolio"){
+		
+		var element = document.getElementById('m3');
+		
+		var menu1 = document.getElementById('m1');
+		var menu2 = document.getElementById('m2');
+		var menu3 = document.getElementById('m3');
+		var menu4 = document.getElementById('m4');
+		
+		menu1.className = 'mainmenubutton';
+		menu2.className = 'mainmenubutton';
+		menu3.className = 'mainmenubutton';
+		menu4.className = 'mainmenubutton';
+		element.className = menu1.className + " mainmenubuttonselected";
+		
+		$("#content").load("portfolio.html");
+		window.location.hash = "#portfolio?cat="+catId;
+	}else if(test == "#contactus"){
+		selectMenuButton('m4');
+	}else{
+		window.location.hash = "#home"
+		selectMenuButton('m1');
+	}
+	
+}
+</script>
+	
+</div>
+</body>
+</html>
+

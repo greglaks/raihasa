@@ -1,0 +1,131 @@
+@charset "utf-8";
+/* CSS Document */
+
+#contenthome{
+	position:relative;
+	width:100%;
+	min-height: 270px;
+	background:white;
+}
+
+#wwdbuttonsection{
+	position:relative;
+	display:block;
+	width:100%;
+	height:auto;
+}
+.wwdbutton{
+	position:relative;
+	border:none;
+	background-size: cover;
+	width: 97px;
+	height: 97px;
+	border-radius: 100px;
+	margin-right: 5px;
+	border: 8px solid rgb(248, 161, 45);
+	background-repeat: no-repeat;
+}
+
+.wwdbutton:hover{
+	cursor:pointer;
+}
+.wwdbuttonselected{
+	border: 8px solid #d57f10;
+}
+.pencilbg{
+	background-image:url("pagehome/icon_specialities/pencilbutton.png");
+}
+.flagbg{
+	background-image:url("pagehome/icon_specialities/bendera.png");
+}
+.startbg{
+	background-image:url("pagehome/icon_specialities/bintang.png");
+}
+.notesbg{
+	background-image:url("pagehome/icon_specialities/notes.png");
+}
+.paintbg{
+	background-image:url("pagehome/icon_specialities/kuasbutton.png");
+}
+.photobg{
+	background-image:url("pagehome/icon_specialities/photo.png");
+}
+.mparagraph{
+	line-height:32px;
+	font-size: 20px;
+	font-family: Calibri;
+}
+.contentmain{
+	color:#555555;
+}
+.middlepagesection{
+	width: 700px;
+	display: block;
+	margin: 0px auto;
+	padding:36px 0px;
+}
+#whatwedo{
+	background-color:rgb(248, 161, 45);
+	position:relative;
+	width:100%;
+	height:610px;
+	background-image:url("pagehome/rightilustration.png");
+	background-repeat: no-repeat;
+	background-position-x: 100%;
+	background-size: contain;
+	
+}
+.bublecontainer{
+	position:relative;
+	margin-top:20px;
+}
+.bubble 
+{
+color:rgb(248, 161, 45);	
+font-size: 20px;
+font-weight: bold;
+text-align: center;
+position: absolute;
+padding: 14px;
+background: #FFFFFF;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+-webkit-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75);
+}
+
+.bubble:after 
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 0 14px 21px;
+border-color: #FFFFFF transparent;
+display: block;
+width: 0;
+z-index: 1;
+top: -20px;
+left: 16px;
+}
+.bpos2{
+	margin-left:135px;
+	visibility: hidden;
+}
+.bpos3{
+	margin-left:275px;
+	visibility: hidden;
+}
+.bpos4{
+	margin-left:405px;
+	visibility: hidden;
+}
+.bpos5{
+	margin-left:545px;
+	visibility: hidden;
+}
+.bpos6{
+	margin-left:675px;
+	visibility: hidden;
+}

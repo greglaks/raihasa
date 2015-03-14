@@ -1,0 +1,430 @@
+
+<body>
+
+	<div id="contenthome">
+	<div style="position:relative;width:100%;height: calc((100% * 3) / 6);height:-webkit-calc((100% * 3) / 6);height:-moz-calc((100% * 3) / 6);background-image:url('pagehome/bannertop.png');background-size:cover;background-repeat:no-repeat"></div>
+		<!-- <img alt="smileywhoweare" src="pagehome/smileywhoweare.png" style="position:relative;float:left;margin-left:50px;margin-top:20px;" width="150px"> -->
+		<div class="contentmain middlepagesection">
+			<h1 class="title titlecolor">Who we are</h1>
+			<p id="whoweare" class="mparagraph"></p>
+		</div>
+	</div>
+	
+	<div id="whatwedo">
+		<div class="middlepagesection" style="color:white;">
+			<h1 class="title">What we do</h1>
+			<div id="wwdbuttonsection">
+			<button class="wwdbutton pencilbg" id="ww1" onclick="wwdwork('ww1')"></button>
+			<button class="wwdbutton flagbg" id="ww2" onclick="wwdwork('ww2')"></button>
+			<button class="wwdbutton startbg" id="ww3" onclick="wwdwork('ww3')"></button>
+			<button class="wwdbutton notesbg" id="ww4" onclick="wwdwork('ww4')"></button>
+			<button class="wwdbutton paintbg" id="ww5" onclick="wwdwork('ww5')"></button>		
+			</div>
+			<div style="padding-top:20px;padding-left:10px">
+				<div class="bubble bpos1" id="wwdbb1">Graphic Design</div>
+				<div class="bubble bpos2" id="wwdbb2">Corporate Design</div>
+				<div class="bubble bpos3" id="wwdbb3">Branding</div>
+				<div class="bubble bpos4" id="wwdbb4">Publishing Design</div>
+				<div class="bubble bpos5" id="wwdbb5">Ilustration</div>
+			</div>
+			<div style="padding:60px 0px;">
+			<p id="wwdcontent" class="mparagraph"></p>
+			</div>
+			
+		</div>
+	</div>
+	
+		<div class="middlepagesection" style="color:#555555;padding:50px 0px;">
+			<h1 class="title titlecolor" style="text-align:left">We've worked with</h1>
+			<img src="pagehome/workwith.jpg"/>
+		</div>
+		
+	<div id="footer">
+	
+		<div class="middlepagesection" style="padding:0px;">
+			<div id="socialmediacontact">
+			
+				
+					<a href="https://www.facebook.com/raihasa" class="sosmedlink" style="border-right:none;"><i class="fa fa-facebook"></i></a>
+					<a href="https://twitter.com/RaihasaVisual" class="sosmedlink" style="border-right:none;"><i class="fa fa-twitter"></i></a>
+					<a href="mailto:info@raihasa.com" class="sosmedlink" ><i class="fa fa-envelope"></i></a>
+				<p style="font-weight:bold;margin:5px 0px;line-height:30px;">Terms and conditions - Privacy Policy</p>
+				<p style="color: rgb(111,111,111);font-size:12px;font-weight:bold;margin:5px 0px;line-height:30px;">
+					2012 Copyright. Raihasa Media. All rights reserved.
+				</p>
+				
+				<p style="color:rgb(117,117,117);text-align:left;line-height:0px;font-weight:bold;">Contact:</p>
+				<p id="address" style="color: rgb(111,111,111);margin:0px;text-align:left;font-size:12px;" class=""textsmall"" >
+				<p id="infotelpemail" style="color: rgb(111,111,111);line-height:10px !important;margin:0px;text-align:left;font-size:12px;"  class=""textsmall"">	
+				
+				
+			</div>
+		</div>	
+
+		
+	<div class="ilustrationfooter">
+	</div>
+	
+	</div>
+
+
+<script type="text/javascript">
+
+$(function(){
+ //	('ww1');
+//	document.getElementById("the_logo").style.display = "none";
+	initContactInfo();
+	initWhoWeAre();
+	wwdwork('ww1');
+//	insertImage();
+});
+/* function insertImage(){
+	var owlDemo = document.getElementById('owl-demo');
+	var owlWrapper = owlDemo.children[0];
+	var parent = owlWrapper.children[0];
+	
+	var files = ["bhinneka-bajanas.png", "binus_international.png", 
+	            "cbn.png", "designlab.png", "greenwoods.png",
+	            "kalbis.png", "lightworks.png", "mahkota.png", "matahari.png"];
+	
+	for(i = 0; i<files.length; i++){
+		var folder = "pagehome/clients/";
+		var div = createImageDiv(folder+files[i]);
+		parent.appendChild(div);
+	}
+	
+} */
+
+function createImageDiv(file){
+	var divParent = document.createElement('div');
+	divParent.classList.add("item");
+	
+	var div = document.createElement('div');
+ 	div.style.height = '120px';
+	div.style.width =  '200px';
+	div.style.backgroundPosition= '50%';
+	div.style.backgroundImage = "url('"+file+"')";
+	div.style.backgroundSize = 'contain';
+	div.style.backgroundRepeat  = 'no-repeat';
+	
+	
+	divParent.appendChild(div);
+	
+	return divParent;
+}
+
+function initAddress() {
+	var value = "";
+	var request = $.ajax({
+		  url: "php/home_address.php?param=1",
+		  type: "GET"
+		});
+	request.done(function(msg) {
+		var element = document.getElementById('address');
+		element.innerHTML = msg;
+	});
+	
+}
+
+function initContactInfo(){
+	var value = "";
+	var request = $.ajax({
+		  url: "php/home_address.php?param=2",
+		  type: "GET"
+		});
+		request.done(function(msg) {
+		var element = document.getElementById('infotelpemail');
+		element.innerHTML = msg;
+	});
+}
+function initWhoWeAre(){
+	var request = $.ajax({
+		  url: "php/home_who_we_are.php",
+		  type: "GET"
+		});
+		request.done(function(msg) {
+			var element = document.getElementById('whoweare');
+			element.innerHTML = msg;
+	});
+
+}
+
+function wwdwork(id){
+	workhomecontentbutton(id);
+	workbuble(id);
+}
+function workhomecontentbutton(id){
+	var element = document.getElementById(id);
+	
+	var menu1 = document.getElementById('ww1');
+	var menu2 = document.getElementById('ww2');
+	var menu3 = document.getElementById('ww3');
+	var menu4 = document.getElementById('ww4');
+	var menu5 = document.getElementById('ww5');
+//	var menu6 = document.getElementById('ww6');
+	
+	menu1.classList.remove("wwdbuttonselected");
+	menu2.classList.remove("wwdbuttonselected");
+	menu3.classList.remove("wwdbuttonselected");
+	menu4.classList.remove("wwdbuttonselected");
+	menu5.classList.remove("wwdbuttonselected");
+//	menu6.classList.remove("wwdbuttonselected");
+	
+	element.classList.add("wwdbuttonselected");
+}
+function workbuble(id){
+
+	document.getElementById('wwdbb1').style.visibility="hidden";
+	document.getElementById('wwdbb2').style.visibility="hidden";
+	document.getElementById('wwdbb3').style.visibility="hidden";
+	document.getElementById('wwdbb4').style.visibility="hidden";
+	document.getElementById('wwdbb5').style.visibility="hidden";
+	
+	if(id == 'ww1'){
+		document.getElementById('wwdbb1').style.visibility="visible";
+		getWWDGraphicDesign();
+	}else if(id == 'ww2'){
+		document.getElementById('wwdbb2').style.visibility="visible";
+		getWWDCorporateDesign();
+	}else if(id == 'ww3'){
+		document.getElementById('wwdbb3').style.visibility="visible";
+		getWWDBranding();
+	}else if(id == 'ww4'){
+		document.getElementById('wwdbb4').style.visibility="visible";
+		getWWDPublishingDesign();
+		
+	}else {
+		document.getElementById('wwdbb5').style.visibility="visible";
+		getWWDIlustration();
+	}
+		
+}
+
+function replaceWWDContent(result){
+	var element = document.getElementById('wwdcontent');
+	element.innerHTML = result;
+}
+
+function getWWDBranding() {
+	var request = $.ajax({
+		  url: "php/home_wwd_branding.php",
+		  type: "GET"
+		});
+		request.done(function(msg) {
+			var element = document.getElementById('wwdcontent');
+			element.innerHTML = msg;
+	});
+}
+function getWWDCorporateDesign() {
+	var request = $.ajax({
+		  url: "php/home_wwd_corporate_design.php",
+		  type: "GET"
+		});
+		request.done(function(msg) {
+			var element = document.getElementById('wwdcontent');
+			element.innerHTML = msg;
+	});
+}
+
+function getWWDGraphicDesign() {
+	var request = $.ajax({
+		  url: "php/home_wwd_graphic_design.php",
+		  type: "GET"
+		});
+		request.done(function(msg) {
+			var element = document.getElementById('wwdcontent');
+			element.innerHTML = msg;
+	});
+		
+}
+
+function getWWDIlustration() {
+	var request = $.ajax({
+		  url: "php/home_wwd_ilustration.php",
+		  type: "GET"
+		});
+		request.done(function(msg) {
+			var element = document.getElementById('wwdcontent');
+			element.innerHTML = msg;
+	});
+}
+
+function getWWDPublishingDesign() {
+	var request = $.ajax({
+		  url: "php/home_wwd_publishing_desig.php",
+		  type: "GET"
+		});
+		request.done(function(msg) {
+			var element = document.getElementById('wwdcontent');
+			element.innerHTML = msg;
+	});
+}
+
+</script>
+<style>
+@charset "utf-8";
+/* CSS Document */
+#makeMeScrollable{
+	position:relative;
+}
+#makeMeScrollable div.scrollableArea *
+{
+	position: relative;
+	display: block
+	float: left;
+	margin: 0;
+	padding: 0;
+	/* If you don't want the images in the scroller to be selectable, try the following
+		block of code. It's just a nice feature that prevent the images from
+		accidentally becoming selected/inverted when the user interacts with the scroller. */
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+#contenthome{
+	position:relative;
+	width:100%;
+	min-height: 270px;
+	background:white;
+}
+
+#wwdbuttonsection{
+	position:relative;
+	display:block;
+	width:100%;
+	height:auto;
+	text-align:center;
+}
+.wwdbutton{
+	position:relative;
+	border:none;
+	background-size: cover;
+	width: 97px;
+	height: 97px;
+	border-radius: 100px;
+	margin-right: 5px;
+	border: 8px solid rgb(248, 161, 45);
+	background-repeat: no-repeat;
+}
+.wwdbutton:hover{
+	cursor:pointer;
+}
+.hello{
+	width:250px;
+	position:absolute;
+	right:380px;
+	top:120px;
+	height:180px;
+}
+.wwdbuttonselected{
+	border: 8px solid #d57f10;
+}
+.pencilbg{
+	background-image:url("pagehome/icon_specialities/icon graphic design.png");
+}
+.flagbg{
+	background-image:url("pagehome/icon_specialities/icon corporate design.png");
+}
+.startbg{
+	background-image:url("pagehome/icon_specialities/icon branding.png");
+}
+.notesbg{
+	background-image:url("pagehome/icon_specialities/icon publishing.png");
+}
+.paintbg{
+	background-image:url("pagehome/icon_specialities/icon illustration.png");
+}
+.photobg{
+	background-image:url("pagehome/icon_specialities/photo.png");
+}
+.mparagraph{
+	line-height:32px;
+	font-size: 20px;
+	font-family: Calibri;
+	text-align:center;
+}
+.contentmain{
+	color:#898989;
+}
+.titlecolor{
+	color:#555555;
+}
+
+#whatwedo{
+	background-color:rgb(248, 161, 45);
+	position:relative;
+	width:100%;
+	height:610px;
+	background-image:url("pagehome/rightilustration.png");
+	background-repeat: no-repeat;
+	background-position-x: 100%;
+	background-size: contain;
+	
+}
+.bublecontainer{
+	position:relative;
+	margin-top:20px;
+}
+.bubble 
+{
+color:rgb(248, 161, 45);	
+font-size: 20px;
+font-weight: bold;
+text-align: center;
+position: absolute;
+padding: 14px;
+background: #FFFFFF;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+}
+
+	.bubble:after 
+	{
+		content: '';
+		position: absolute;
+		border-style: solid;
+		border-width: 0 14px 21px;
+		border-color: #FFFFFF transparent;
+		display: block;
+		width: 0;
+		z-index: 1;
+		top: -20px;
+		left: 16px;
+	}
+.bpos1{
+	margin-left:90px;
+	visibility: hidden;
+}
+.bpos2{
+	margin-left:200px;
+	visibility: hidden;
+}
+.bpos3{
+	margin-left:305px;
+	visibility: hidden;
+}
+.bpos4{
+	margin-left:415px;
+	visibility: hidden;
+}
+.bpos5{
+	margin-left:515px;
+	visibility: hidden;
+}
+.bpos6{
+	margin-left:430px;
+	visibility: hidden;
+}
+#owl-demo .item{
+  margin: 3px;
+}
+#owl-demo .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+</style>
+</body>

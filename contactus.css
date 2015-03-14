@@ -1,0 +1,58 @@
+@CHARSET "ISO-8859-1";
+
+#contactuscontent{
+	position:relative;
+	width:100%;
+	min-height:500px;
+	height:auto;
+	margin-top:130px;
+	z-index:10;
+}
+
+#contactuswrapper{
+	position:relative;
+	width:850px;	
+	display:block;
+	margin:0px auto;
+	height:650px;
+	overflow:hidden;
+}
+.contactuselement{
+	height:auto;
+	position:relative;
+	width:50%;
+}
+
+.formlabel{
+	color:#555555;
+	resize:false;
+}
+.textform{
+	background-color:rgb(231, 232, 233);
+	border:none;
+	padding:5px;	
+}
+.sendbutton{
+	background-image:url("pagecontactus/button.png");
+	background-repeat:no-repeat;
+	background-size:contain;
+	border:none;
+	width:95px;
+	height:35px;
+	background-color:transparent;
+	color:rgb(40,118,98);
+	font-weight:bold;
+	position:absolute;
+	right:10px;
+	bottom:5px;
+}
+.sendbutton:hover{
+	cursor:pointer;
+}
+.imageelement{
+	position:relative;
+	background-image:url("pagecontactus/mailbox.png");
+	background-repeat:no-repeat;
+	height: 600px;
+	margin-top:80px;
+}
