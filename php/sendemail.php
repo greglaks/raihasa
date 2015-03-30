@@ -1,4 +1,5 @@
 <?php
+include "connection.php";
 $name = $_POST['name'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
@@ -6,10 +7,19 @@ $body = $_POST['body'];
 
 $raihasaEmail = getAddress('email');
 $message = wordwrap($body);
-$sbj = " Email from Name: ".$name."Email: ".$email." Phone:".$phone;
-mail($raihasaEmail,$sbj,$message);
-header("Location: ../index.html");
-exit;
+$message = "Email: ".$email."\n"."Name:".$name."\n"."Phone:".$phone."\n\n".$message;
+$sbj = "Subject from ".$name;
+
+
+if (mail($raihasaEmail,$sbj,$message)) {
+	echo "0";
+	exit;
+}
+else{
+	echo "-1";
+	exit;
+}
+
 
 
 function getAddress($var){

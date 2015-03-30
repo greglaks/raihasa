@@ -6,10 +6,11 @@ $projectname = $_POST['projectname'];
 $projectid = $_POST['pid'];
 $pshortdesc = $_POST['shortdescription'];
 $client = $_POST['client'];
+$year = $_POST['year'];
 $img_banner = $_FILES['image_banner']['name'];
 
 if(empty($img_banner)){
-	$sql = "UPDATE `project` SET name = '$projectname' , cat_id = '$category' , client = '$client' , short_desc = '$pshortdesc' WHERE proj_id = '$projectid'";
+	$sql = "UPDATE `project` SET name = '$projectname' , cat_id = '$category' , client = '$client' , short_desc = '$pshortdesc', year = '$year' WHERE proj_id = '$projectid'";
 }
 else{
 	$image = $_FILES['image_banner'];
@@ -18,7 +19,7 @@ else{
 	$TARGET_PATH = "images/".$fnamesafe;
 	move_uploaded_file($_FILES['image_banner']['tmp_name'],$TARGET_PATH);
 	
-	$sql = "UPDATE `project` SET name = '$projectname' , cat_id = '$category' , client = '$client' , short_desc = '$pshortdesc' ,  img_banner = '$TARGET_PATH' WHERE proj_id = '$projectid'";
+	$sql = "UPDATE `project` SET name = '$projectname' , cat_id = '$category' , client = '$client' , short_desc = '$pshortdesc' ,  img_banner = '$TARGET_PATH', year = '$year' WHERE proj_id = '$projectid'";
 }
 
 

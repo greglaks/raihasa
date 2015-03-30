@@ -50,7 +50,12 @@ echo "<div class='adminprojectitem'>
 				<tr>
 				<td>Client:</td>
 				<td><input type='text' maxlength='40' name='projclient' class='defaulttext'/></td>						
-				</tr>				
+				</tr>	
+
+				<tr>
+				<td>Client:</td>
+				<td><input type='text' maxlength='40' name='projyear' class='defaulttext'/></td>						
+				</tr>
 
 				<tr>
 				<td></td>
@@ -72,6 +77,7 @@ if ($result->num_rows > 0) {
 		$thumb_img = $row['thumb_img_path'];
 		$pshort_description = $row['short_desc'];
 		$img_src = $row['img_banner'];
+		$projyear = $row['year'];
 		
 		$projecttextfieldid = "ptfid".$projectid;
 		$projectselectid = "psid".$projectid;
@@ -81,6 +87,7 @@ if ($result->num_rows > 0) {
 		$projecttitle1id = "ptitle1".$projectid;
 		$projecttitle2id = "ptitle2".$projectid;
 		$projecttitle3id = "ptitle3".$projectid;
+		$projyearid = "projyear".$projectid;
 	
 		foreach ($ardata as $key => $arval){
 			$categoryId = $key;
@@ -130,6 +137,11 @@ if ($result->num_rows > 0) {
 						<td><input type='text' name='client' maxlength='40' value ='$projclient' id='$projectclientid' class='defaulttext'/></td>						
 						</tr>					
 
+						<tr>
+						<td>Year:</td>
+						<td><input type='text' maxlength='40' value ='$projyear' id='$projyearid' name='year' class='defaulttext'/></td>						
+						</tr>
+						
 						<tr>
 						<td></td>
 						<td><input type='submit' value='Update'></td>

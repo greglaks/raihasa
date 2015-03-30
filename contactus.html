@@ -9,10 +9,10 @@
 
 			<div id="preword">
 				<p class="maintitle title" style='text-align:left;'>Let's get in touch</p>
-				<p class="prewordparag">If you are interested with our works and would love to get in touch with us, please leave us message:</p>
+				<p class="prewordparag textnormal">If you are interested with our works and would love to get in touch with us, please leave us message:</p>
 			</div>
 			
-				<form style="margin-top:40px;" action="php/sendemail.php" method="POST">
+				<form style="margin-top:40px;" id="contactusform">
 				  <table>
 				    <tr>
 				      <td align="left"><span class="formlabel">Name:</span></td>
@@ -32,19 +32,17 @@
 				  </table>
 				  
 				  <textarea rows="10" cols="60" name="body" style="width:100%;margin-top:20px;overflow-y: scroll;resize:none;"></textarea>
-				  <input type="submit" value="Send" class="sendbutton" style="margin-top:10px;">
+				  <button class="sendbutton" style="margin-top:10px;" onclick="sendEmail()">Send</button>
+				  
 				</form>
 		</div>
 		<div class="contactuscontactbox">
-			<p style='font-family:Calibri;color:#898989;font-size:24px;border-bottom:2px solid;padding-bottom:25px;'>Or you can reach us directly  trough :</p>
+			<p style='font-family:Open Sans, sans-serif;color:#898989;font-size:16pt;border-bottom:2px solid;padding-bottom:25px;'>Or you can reach us directly  trough :</p>
 			<p class="normalboldp">Phone:</p><p class="nnormalp" id="contustelp"></p>
 			<p class="normalboldp">Email:</p><p class="nnormalp" id="contusemail"></p>
 		</div>
 		
 		<img src="pagecontactus/gotquestionpic.png" style="position:absolute;bottom:-2px;right:0px;height:450px;">
-		
-		
-		
 	</div>
 
 </div>
@@ -52,20 +50,17 @@
 	
 		<div class="middlepagesection" style="padding:0px;">
 			<div id="socialmediacontact">
-			
-				
 					<a href="https://www.facebook.com/raihasa" class="sosmedlink" style="border-right:none;"><i class="fa fa-facebook"></i></a>
 					<a href="https://twitter.com/RaihasaVisual" class="sosmedlink" style="border-right:none;"><i class="fa fa-twitter"></i></a>
 					<a href="mailto:info@raihasa.com" class="sosmedlink" ><i class="fa fa-envelope"></i></a>
 				<p style="font-weight:bold;margin:5px 0px;line-height:30px;">Terms and conditions - Privacy Policy</p>
-				<p style="color: rgb(111,111,111);font-size:12px;font-weight:bold;margin:5px 0px;line-height:30px;">
+				<p style="color: rgb(111,111,111);font-weight:bold;margin:5px 0px;line-height:30px;" class="textnormal">
 					2012 Copyright. Raihasa Media. All rights reserved.
 				</p>
 				
 				<p style="color:rgb(117,117,117);text-align:left;line-height:0px;font-weight:bold;">Contact:</p>
-				<p id="address" style="color: rgb(111,111,111);margin:0px;text-align:left;font-size:12px;" class=""textsmall"" >
-				<p id="infotelpemail" style="color: rgb(111,111,111);line-height:10px !important;margin:0px;text-align:left;font-size:12px;"  class=""textsmall"">	
-				
+				<p id="address" style="color: rgb(111,111,111);margin:0px;text-align:left;" class="textnormal" >
+				<p id="infotelpemail" style="color: rgb(111,111,111);line-height:10px !important;margin:0px;text-align:left;"  class="textnormal">	
 				
 			</div>
 		</div>	
@@ -75,6 +70,7 @@
 	</div>
 	
 	</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	//document.getElementById("the_logo").style.display = "block";
@@ -93,6 +89,40 @@ function initAddress() {
 	});
 	
 }
+function sendEmail(){
+	var element = document.getElementById('contactusform');
+	var name = document.getElementsByName("name")[0].value;
+	var email = document.getElementsByName("email")[0].value;
+	var phone = document.getElementsByName("phone")[0].value;
+	var content = document.getElementsByName("body")[0].value;
+	
+ 	var data = {name:name, email:email, phone:phone, body:content};
+ 			var request = $.ajax({
+		  url: "php/sendemail.php",
+		  type: "POST",
+		  data:data,
+		  success: function(msg){
+			if(msg == "0"){
+				alert("Thank you. Your message is sent");
+			}
+			else{
+				alert("Sorry. Your message can not be sent. Please use contact below to contact us");
+			}
+		}
+		}); 
+
+
+	
+	
+}
+/* function executeSendEmail(name, email, phone, content){
+	
+	$.post("php/sendemail.php", data, 
+	
+	function( data, status){
+    	   
+    });
+} */
 function initBoxContactInfo(){
 	initTelp();
 	initEmail();
@@ -166,8 +196,7 @@ function initContactUs(){
 }
 
 .prewordparag{
-	font-family:Calibri;
-	font-size:18px;
+	font-family:'Open Sans', sans-serif;;
 	color:#898989;
 }
 
@@ -180,7 +209,7 @@ function initContactUs(){
 }
 
 .normalboldp{
-	font-family:Calibri;
+	font-family:'Open Sans', sans-serif;;
 	font-size:22px;
 	font-weight:bold;
 	color:#898989;
@@ -188,7 +217,7 @@ function initContactUs(){
 }
 
 .nnormalp{
-	font-family:Calibri;
+	font-family:'Open Sans', sans-serif;;
 	font-size: 22px;
 	color:#898989;
 	margin-top:5px;
@@ -200,7 +229,7 @@ function initContactUs(){
 	width:30%;
 	top:175px;
 	right:10px;
-	border:2px solid #d7d7d7;
+	border:2px solid #898989	;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
@@ -208,7 +237,7 @@ function initContactUs(){
 }
 
 .formlabel{
-	color:#555555;
+	color:#898989;
 	resize:false;
 }
 .textform{

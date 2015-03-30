@@ -15,7 +15,8 @@ class Project{
 							 	 "proj_id" => $row['proj_id'], 
 								 "projname" => $row['name'],
 								 "client" => $row['client'],
-								 "img_banner" =>$row['img_banner']);
+								 "img_banner" =>$row['img_banner'],
+								 "year" =>$row['year']);
 			}
 		mysqli_close($conn);
 		return $myarray;
